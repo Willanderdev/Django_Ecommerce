@@ -1,0 +1,17 @@
+{% extends "accounts/profile.html" %}
+
+{% load bootstrap5 %}
+
+{% block title %}Alterar Dados{% endblock %}
+
+{% block accounts_container %}
+    <h2>Alterar Dados</h2>
+    <form class="form-horizontal" action="" method="post">
+        {% csrf_token %}
+        
+           {% bootstrap_form form %}
+             <br>
+            <button type="submit" class="btn btn-secondary">Salvar</button>
+        
+    </form>
+{% endblock %}

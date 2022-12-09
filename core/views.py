@@ -26,7 +26,6 @@ def contact(request):
     context = {
         'form': form,
     }
-
     return render(request, 'contact.html', context)
 
 

@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'core',
     'catalog',
     'bootstrap5',
-    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -131,18 +130,9 @@ STATICFILES_DIRS = [
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-#login redirect
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = 'login'
 
-AUTH_USER_MODEL = 'accounts.User'
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'accounts.backends.ModelBackend',
-)
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-
-
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
