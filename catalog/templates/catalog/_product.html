@@ -1,0 +1,22 @@
+<div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+        <a href="{% url 'product' slug=prod.slug %}">
+            <img src="http://placehold.it/350x250" alt="" />
+        </a>
+        <div class="caption">
+            <h3>{{prod}}</h3>
+            {{prod.description|linebreaks}}
+            <p><a href="{% url 'product' prod.slug %}" class="btn btn-success" role="button">Detalhes</a>
+                <a href="{% url 'carrinho' prod.slug %}" class="btn btn-default" role="button">Adcionar</a>
+            </p>
+            {% if messages %}
+            {%for message in messages %}
+            <div class="alert alert-primary" role="alert">
+                {{message}}
+            </div>
+            {%endfor%}
+            {% endif %}
+        </div>
+    </div>
+
+</div>

@@ -10,22 +10,8 @@ Listagem de Produtos | {{ block.super }}
 </div>
 <div class="row">
     {% for prod in produtos %}
-    <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-            <a href="{{ prod.get_absolute_url }}">
-                <img src="http://placehold.it/350x250" alt="" />
-            </a>
-            <div class="caption">
-                <h3>{{prod}}</h3>
-                {{prod.description|linebreaks}}
-                <p><a href="{{ prod.get_absolute_url }}" class="btn btn-success" role="button">Button</a> <a href="#"
-                        class="btn btn-default" role="button">Button</a></p>
-            </div>
-        </div>
-        
-    </div>
+ {% include 'catalog/_product.html' %}
     {% endfor %}
   
-
 </div>
 {% endblock %}

@@ -42,11 +42,14 @@ INSTALLED_APPS = [
     'catalog',
     'bootstrap5',
     'accounts',
+    'checkout',
+   
+    
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -124,14 +127,14 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = [
-     os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, "static")
 ]
 
-#Email
+# Email
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-#login redirect
+# login redirect
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = 'login'
 
@@ -142,7 +145,6 @@ AUTHENTICATION_BACKENDS = (
 )
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
