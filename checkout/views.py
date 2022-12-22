@@ -1,14 +1,15 @@
 # coding=utf-8
 
-from django.shortcuts import get_object_or_404
-from django.views.generic import RedirectView, TemplateView
+from django.shortcuts import get_object_or_404, redirect
+from django.views.generic import RedirectView, TemplateView, ListView
 from django.forms import modelformset_factory
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 
 from catalog.models import Product
 
-from .models import CartItem
+from .models import CartItem, Order
 
 
 class CreateCartItemView(RedirectView):
@@ -37,9 +38,7 @@ class CartItemView(TemplateView):
         )
         session_key = self.request.session.session_key
         if session_key:
-            #se for pra limpar o formset..
             if clear:
-                #gerando formset sem dados
                 formset = CartItemFormSet(
                     queryset=CartItem.objects.filter(cart_key=session_key)
                 )
@@ -63,12 +62,34 @@ class CartItemView(TemplateView):
         if formset.is_valid():
             formset.save()
             messages.success(request, 'Carrinho atualizado com sucesso')
-            #sobrescreveu o metodo formset com o clear pra limpar os dados quando o objeto for deletado
             context['formset'] = self.get_formset(clear=True)
         return self.render_to_response(context)
-    
-    
 
 
-# create_cartitem = CreateCartItemView.as_view()
-# cart_item = CartItemView.as_view()
+class CheckoutView(LoginRequiredMixin, TemplateView):
+
+    template_name = 'checkout/checkout.html'
+
+    def get(self, request, *args, **kwargs):
+        session_key = request.session.session_key
+        if session_key and CartItem.objects.filter(cart_key=session_key).exists():
+            cart_items = CartItem.objects.filter(cart_key=session_key)
+            order = Order.objects.create_order(
+                user=request.user, cart_items=cart_items
+            )
+        else:
+            messages.info(request, 'Não há itens no carrinho de compras')
+            return redirect('cart')
+        response = super(CheckoutView, self).get(request, *args, **kwargs)
+        response.context_data['order'] = order
+        return response
+    
+class OrderListView(LoginRequiredMixin, ListView):
+    
+    template_name = 'checkout/order_list.html'
+    paginate_by = 10
+    
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)
+
+
