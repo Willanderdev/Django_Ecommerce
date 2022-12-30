@@ -31,7 +31,7 @@ class CreateCartItemView(RedirectView):
         return reverse('cart')
 
 
-class CartItemView(TemplateView):
+class CartItemView(TemplateView, CreateCartItemView):
 
     template_name = 'checkout/cart.html'
 

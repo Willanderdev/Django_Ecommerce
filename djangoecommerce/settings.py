@@ -87,7 +87,6 @@ WSGI_APPLICATION = 'djangoecommerce.wsgi.application'
 
 #configuração do postgresql pra deploy no Railway
 #postgresql://postgres: NTq081M1EtDH826OuhEo@containers-us-west-68.railway.app: 6519/railway
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -98,6 +97,19 @@ DATABASES = {
         'PORT': '6519',
     }
 }
+
+#configuração Postgrsql local(desenvolvimento)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'Port-Ecommerce',
+#         'USER': 'postgres',
+#         'PASSWORD': 'Tr4der2404',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
 
 
 # Password validation
@@ -163,7 +175,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 PAYPAL_TEST = True
 PAYPAL_EMAIL = 'willanderguitar@hotmail.com'
 
-#thumbnails
+#thumbnails configuração pra corte de imagens
 THUMBNAIL_ALIASES = {
     '': {
         'prod_image': {'size': (285,160), 'crop': True},

@@ -41,10 +41,10 @@ Carrinho de Compras
                             {% for form in formset %}
                             <tr>
                                 <td>
-                                    {{form.instance.product.pk}}
+                                    {{form.instance.product.slug}}
                                 </td>
                                 <td>
-                                    {{form.instance.product}}
+                                   <a href="#">{{form.instance.product}}</a>
                                 </td>
                                 <td>
                                     {{ form.instance.price|floatformat:"2" }}
