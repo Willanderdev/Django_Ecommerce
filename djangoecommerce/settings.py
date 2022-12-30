@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'whitenoise.runserver_nostatic',
     
+    
     'core',
     'catalog',
     'bootstrap5',
