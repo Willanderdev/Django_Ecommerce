@@ -49,6 +49,9 @@ INSTALLED_APPS = [
    
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://djangoecommerce-production-e579.up.railway.app']
+
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.security.SecurityMiddleware',
