@@ -10,6 +10,7 @@ Finalização da Compra
   <li><a href="{% url 'cart' %}">Carrinho de Compras</a></li>
   <li class="active">Finalização da Compra</li>
 </ol>
+
 <div class="page-header">
     <h1>Escolha a forma de pagamento</h1>
 </div>
@@ -18,10 +19,10 @@ Finalização da Compra
 </div>
 <div class="row">
     <div class="col-md-4 col-md-offset-2">
-    <a href="" class="btn btn-success">Pagar com Pagseguro</a>
+    <a href="" class="btn btn-success">Pagar com Pix</a>
     </div>
         <div class="col-md-4">
-            <a href="#" class="btn btn-primary">Pagar com Paypal </a>
+            <a href="{% url 'paypal' order.pk  %}" class="btn btn-primary">Pagar com Cartão</a>
     </div>
 </div>
 {% endblock %}

@@ -1,11 +1,16 @@
+{% load thumbnail %}
 <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
-        <a href="{% url 'product' slug=prod.slug %}">
-            <img src="http://placehold.it/350x250" alt="" />
-        </a>
+       
         <div class="caption">
-            <h3>{{prod}}</h3>
-            {{prod.description|linebreaks}}
+            <h1>{{prod}}</h1>
+            <br>
+            
+             <a href="{{ product.get_absolute_url }}">
+         <img src="{{ prod.image|thumbnail_url:'prod_image' }}" alt="" />
+        </a>
+        <br>
+            <h6>{{prod.description|linebreaks}}</h6>
             <p><a href="{% url 'product' prod.slug %}" class="btn btn-success" role="button">Detalhes</a>
                 <a href="{% url 'carrinho' prod.slug %}" class="btn btn-default" role="button">Adcionar</a>
             </p>

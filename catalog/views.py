@@ -43,8 +43,9 @@ class CategoryListView(ListView):
 
 def product(request, slug):
     product = Product.objects.get(slug=slug)
+    prod = Product.objects.all()
     context = {
-        'product': product
+        'product': product,
         
     }
     return render(request, 'catalog/product.html', context)

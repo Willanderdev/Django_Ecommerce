@@ -1,12 +1,15 @@
 # coding=utf-8
 
 from django.shortcuts import get_object_or_404, redirect
-from django.views.generic import RedirectView, TemplateView, ListView
+from paypal.standard.forms import PayPalPaymentsForm
+from django.views.generic import RedirectView, TemplateView, ListView, DetailView
 from django.forms import modelformset_factory
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-
+from paypal.standard.models import ST_PP_COMPLETED
+from paypal.standard.ipn.signals import valid_ipn_received
+from django.conf import settings
 from catalog.models import Product
 
 from .models import CartItem, Order
@@ -77,6 +80,7 @@ class CheckoutView(LoginRequiredMixin, TemplateView):
             order = Order.objects.create_order(
                 user=request.user, cart_items=cart_items
             )
+            cart_items.delete()
         else:
             messages.info(request, 'Não há itens no carrinho de compras')
             return redirect('cart')
@@ -84,12 +88,57 @@ class CheckoutView(LoginRequiredMixin, TemplateView):
         response.context_data['order'] = order
         return response
     
+# view que mostra todos os pedidos do user logado    
 class OrderListView(LoginRequiredMixin, ListView):
     
     template_name = 'checkout/order_list.html'
-    paginate_by = 10
+    paginate_by = 20
+    
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)
+    
+#view que mostra o pedido com detalhes    
+class OrderDetailView(LoginRequiredMixin, DetailView):
+    
+    template_name = 'checkout/order_detail.html'
     
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)
 
 
+class PaypalView(LoginRequiredMixin, TemplateView):
+
+    template_name = 'checkout/paypal.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PaypalView, self).get_context_data(**kwargs)
+        order_pk = self.kwargs.get('pk')
+        order = get_object_or_404(
+            Order.objects.filter(user=self.request.user), pk=order_pk
+        )
+        paypal_dict = order.paypal()
+        paypal_dict['return_url'] = self.request.build_absolute_uri(
+            reverse('order_list')
+        )
+        paypal_dict['cancel_return'] = self.request.build_absolute_uri(
+            reverse('order_list')
+        )
+        paypal_dict['notify_url'] = self.request.build_absolute_uri(
+            reverse('paypal-ipn')
+        )
+        context['form'] = PayPalPaymentsForm(initial=paypal_dict)
+        return context
+
+
+def paypal_notification(sender, **kwargs):
+    ipn_obj = sender
+    if ipn_obj.payment_status == ST_PP_COMPLETED and \
+            ipn_obj.receiver_email == settings.PAYPAL_EMAIL:
+        try:
+            order = Order.objects.get(pk=ipn_obj.invoice)
+            order.complete()
+        except Order.DoesNotExist:
+            pass
+
+
+valid_ipn_received.connect(paypal_notification)

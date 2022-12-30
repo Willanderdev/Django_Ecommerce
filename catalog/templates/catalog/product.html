@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load thumbnail %}
 {% block title %}
     {{product}} | {{ block.super }}
 {% endblock %}
@@ -10,8 +10,8 @@
 </div>
 <div class="row">
   <div class="col-sm-4">
-      <a href="{{ prod.get_absolute_url }}" class="thumbnail">
-          <img src="http://placehold.it/350x250" alt="" />
+      <a href="{{ product.get_absolute_url }}" class="thumbnail">
+          <img src="{{ product.image|thumbnail_url:'prod_image' }}" alt="" />
       </a>
   </div>
   <div class="col-sm-8">
@@ -22,3 +22,4 @@
   </div>
 </div>
 {% endblock %}
+

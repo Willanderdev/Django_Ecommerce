@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ojvf@!+y@p*$8=a(xi#rcga%-(pd)p0vbl%!(kbiagun)2irpi
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,13 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'paypal.standard.ipn',
+    'easy_thumbnails',
+    
     'core',
     'catalog',
     'bootstrap5',
     'accounts',
     'checkout',
    
-    
 ]
 
 MIDDLEWARE = [
@@ -127,6 +129,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
@@ -149,3 +152,28 @@ AUTHENTICATION_BACKENDS = (
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+PAYPAL_TEST = True
+PAYPAL_EMAIL = 'willanderguitar@hotmail.com'
+
+#thumbnails
+THUMBNAIL_ALIASES = {
+    '': {
+        'prod_image': {'size': (285,160), 'crop': True},
+    },
+}
+
+#configurações dos pictures
+# PICTURES = {
+#     "BREAKPOINTS": {
+#         "xs": 576,
+#         "s": 768,
+#         "m": 992,
+#         "l": 1200,
+#         "xl": 1400,
+#     },
+#     "GRID_COLUMNS": 12,
+#     "CONTAINER_WIDTH": 1200,
+#     "FILE_TYPES": ["WEBP"],
+#     "PIXEL_DENSITIES": [1, 2],
+# }

@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 
+
+
 class Category(models.Model):
     
     name = models.CharField('Nome', max_length=100)
@@ -32,7 +34,7 @@ class Product(models.Model):
         'catalog.Category', verbose_name='Categoria', on_delete=models.CASCADE)
     description = models.TextField('Descrição', blank=True)
     price = models.DecimalField('Preço', decimal_places=2, max_digits=8)
-    
+    image = models.ImageField('image', upload_to='products', blank=True, null=True)
     created = models.DateTimeField('Criado em', auto_now_add=True)
     modified = models.DateTimeField('Modificado em', auto_now=True)
 
