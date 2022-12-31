@@ -93,28 +93,28 @@ WSGI_APPLICATION = 'djangoecommerce.wsgi.application'
 
 #configuração do postgresql pra deploy no Railway
 #postgresql://postgres: NTq081M1EtDH826OuhEo@containers-us-west-68.railway.app: 6519/railway
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': 'NTq081M1EtDH826OuhEo',
-#         'HOST': 'containers-us-west-68.railway.app',
-#         'PORT': '6519',
-#     }
-# }
-
-#configuração Postgrsql local(desenvolvimento)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Port-Ecommerce',
+        'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'Tr4der2404',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'PASSWORD': 'NTq081M1EtDH826OuhEo',
+        'HOST': 'containers-us-west-68.railway.app',
+        'PORT': '6519',
     }
 }
+
+#configuração Postgrsql local(desenvolvimento)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'Port-Ecommerce',
+#         'USER': 'postgres',
+#         'PASSWORD': 'Tr4der2404',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 
 
