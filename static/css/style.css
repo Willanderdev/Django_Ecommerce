@@ -1,10 +1,14 @@
 html,
 body {
+    background-color: rgb(138, 137, 151);
     margin: 0;
     padding: 0;
     height: 100%;
 }
 
+a{
+    color: black;
+}
 #wrapper {
     min-height: 100%;
     position: relative;
