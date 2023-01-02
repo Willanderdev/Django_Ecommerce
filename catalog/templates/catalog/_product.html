@@ -9,10 +9,10 @@
              <a href="{{ product.get_absolute_url }}">
          <img src="{{ prod.image|thumbnail_url:'prod_image' }}" alt="" />
         </a>
-        <br>
+        <br><br>
             <h6>{{prod.description|linebreaks}}</h6>
-            <p><a href="{% url 'product' prod.slug %}" class="btn btn-success" role="button">Detalhes</a>
-                <a href="{% url 'carrinho' prod.slug %}" class="btn btn-default" role="button">Adcionar</a>
+            <p><a href="{% url 'product' prod.slug %}" class="btn btn-default" role="button">Detalhes</a>
+                <a href="{% url 'carrinho' prod.slug %}" class="btn btn-success" role="button">Adcionar</a>
             </p>
             {% if messages %}
             {%for message in messages %}
