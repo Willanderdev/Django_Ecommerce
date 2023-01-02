@@ -25,9 +25,9 @@ class CreateCartItemView(RedirectView):
             self.request.session.session_key, product
         )
         if created:
-            messages.success(self.request, 'Produto adicionado com sucesso')
+            messages.success(self.request, 'Produto adicionado')
         else:
-            messages.success(self.request, 'Produto atualizado com sucesso')
+            messages.success(self.request, 'Produto atualizado')
         return reverse('cart')
 
 
@@ -64,7 +64,7 @@ class CartItemView(TemplateView, CreateCartItemView):
         context = self.get_context_data(**kwargs)
         if formset.is_valid():
             formset.save()
-            messages.success(request, 'Carrinho atualizado com sucesso')
+            messages.success(request, 'Carrinho atualizado')
             context['formset'] = self.get_formset(clear=True)
         return self.render_to_response(context)
 

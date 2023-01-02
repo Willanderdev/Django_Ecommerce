@@ -1,19 +1,16 @@
 {% extends 'base.html' %}
 {% load bootstrap5 %}
 {% block title %}
-Carrinho de Compras
+
 
 {% endblock %}
 
 {% block container %}
 
-<ol class="breadcrumb">
-          <li><a href="{% url 'index' %}">Início</a></li>
-          <li class="active">Carrinho de Compras</li>
-        </ol>
 		<div class="page-header">
 			<h1>Carrinho de Compras</h1>
 		</div>
+        <br>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <form class="" action="" method="post">
@@ -64,6 +61,7 @@ Carrinho de Compras
                             {%endfor%}
                         </tbody>
                     </table>
+                    <br>
                     <p class="text-right">
 						<a href="{% url 'produtos' %}" class="pull-left btn btn-default">Continuar Compras</a>
 						<button type="submit" class="btn btn-primary" name="button">Atualizar Carrinho</button></li>
