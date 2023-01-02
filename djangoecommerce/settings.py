@@ -208,3 +208,5 @@ THUMBNAIL_ALIASES = {
 #     "FILE_TYPES": ["WEBP"],
 #     "PIXEL_DENSITIES": [1, 2],
 # }
+
+#pra carregar os rquivos static no railway é preciso adcionar o whitenoise nos middleware
