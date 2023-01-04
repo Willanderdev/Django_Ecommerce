@@ -10,42 +10,61 @@ Listagem de Produtos | {{ block.super }}
 </div>
 <div class="row">
     {% for prod in produtos %}
- {% include 'catalog/_product.html' %}
+    {% include 'catalog/_product.html' %}
     {% endfor %}
 </div>
 
 <div class="row">
-        <div class="col-12 col-sm-6 col-md-4">
-            <nav aria-label="navegacao-paginacao">
-                <ul class="pagination">
+    <div class="col-12 col-sm-6 col-md-4">
+        <nav aria-label="navegacao-paginacao">
+            <ul class="pagination">
 
-                    <!-- botao anterios -->
-                    {% if page_obj.has_previous %}
-                    <li class="page-item"><a class="page-link"
-                            href="?page={{ page_obj.previous_page_number}}">&laquo;</a>
-                    </li>
-                    {% else %}
-                    <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
-                    {% endif %}
+                <!-- botao anterios -->
+                {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number}}">&laquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+                {% endif %}
 
-                    <!-- centro -->
-                    {% for num in paginator.page_range %}
-                    {% if page_obj.number == num %}
-                    <li class="page-item active"><a class="page-link" href="#">{{num}}</a></li>
-                    {% else %}
-                    <li class="page-item"><a class="page-link" href="?page={{num}}">{{num}}</a></li>
-                    {% endif %}
-                    {% endfor %}
+                <!-- centro -->
+                {% for num in paginator.page_range %}
+                {% if page_obj.number == num %}
+                <li class="page-item active"><a class="page-link" href="#">{{num}}</a></li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{num}}">{{num}}</a></li>
+                {% endif %}
+                {% endfor %}
 
-                    <!-- next -->
-                    {% if page_obj.has_next %}
-                    <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">&raquo;</a>
-                    </li>
-                    {% else %}
-                    <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
-                    {% endif %}
-                </ul>
-            </nav>
-        </div>
+                <!-- next -->
+                {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">&raquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+                {% endif %}
+            </ul>
+        </nav>
     </div>
+</div>
 {% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+    $(function () {
+        $('.cart').on('click', function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: $(this).attr('href'),
+                dataType: 'json',
+                success: function (data, textStatus, jqXHR) { 
+                    alert('PRODUTO ADCIONADO');
+            }
+        });
+    });
+});
+
+
+</script>
+{%endblock%}

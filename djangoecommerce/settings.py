@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'paypal.standard.ipn',
     'easy_thumbnails',
     'whitenoise.runserver_nostatic',
-    
-    
+    'watson',
+
     'core',
     'catalog',
     'bootstrap5',
@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 
 CSRF_TRUSTED_ORIGINS = [
     'https://djangoecommerce-production-e579.up.railway.app']
+
 
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -65,6 +66,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'checkout.middleware.cart_item_middleware',
 ]
+
 
 ROOT_URLCONF = 'djangoecommerce.urls'
 

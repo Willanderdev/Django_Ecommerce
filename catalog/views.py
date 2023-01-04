@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from .models import Product, Category
+from watson import search as watson
 
 
 class Product_listView(ListView):
@@ -11,7 +12,11 @@ class Product_listView(ListView):
     ordering = 'id'
    
     def get_queryset(self):
-        return Product.objects.all() 
+        queryset = Product.objects.all()
+        pesquisa = self.request.GET.get('pesquisa', '')
+        if pesquisa:
+            queryset = watson.filter(queryset, pesquisa) 
+        return queryset
     
     
 # def product_list(request):

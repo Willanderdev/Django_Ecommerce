@@ -24,10 +24,10 @@ class CreateCartItemView(RedirectView):
         cart_item, created = CartItem.objects.add_item(
             self.request.session.session_key, product
         )
-        # if created:
-        #     messages.success(self.request, 'Produto adicionado')
-        # else:
-        #     messages.success(self.request, 'Produto atualizado')
+        if created:
+            messages.success(self.request, 'Produto adicionado')
+        else:
+            messages.success(self.request, 'Produto atualizado')
         return reverse('cart')
 
 

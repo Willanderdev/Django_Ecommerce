@@ -1,13 +1,13 @@
 html,
 body {
-    background-color: hsl(202, 47%, 42%);
+    background-color: hsl(169, 53%, 76%);
     margin: 0;
     padding: 0;
     height: 100%;
 }
 
 a{
-    color: black;
+    color: rgb(125, 185, 91);
 }
 #wrapper {
     min-height: 100%;
