@@ -17,14 +17,6 @@ from .models import CartItem, Order
 
 class CreateCartItemView(View):
     
-    def get_context_data(self, **kwargs):
-        context = super(CreateCartItemView, self).get_context_data(**kwargs)
-        itens1 = CartItem.objects.all()
-        itens = len(itens1)
-        print(itens1)
-        context['cart_item'] = itens
-        return context
-
     def get(self, request, *args, **kwargs):
         product = get_object_or_404(Product, slug=self.kwargs['slug'])
         if self.request.session.session_key is None:
@@ -36,7 +28,7 @@ class CreateCartItemView(View):
         #     messages.success(self.request, 'Produto adicionado')
         # else:
         #     messages.success(self.request, 'Produto atualizado')
-        return reverse('cart')
+        return redirect('cart')
 
 
 class CartItemView(TemplateView, CreateCartItemView):
@@ -65,7 +57,7 @@ class CartItemView(TemplateView, CreateCartItemView):
     def get_context_data(self, **kwargs):
         context = super(CartItemView, self).get_context_data(**kwargs)
         context['formset'] = self.get_formset()
-        context['cart_item'] = CartItem()
+        
         return context
 
     def post(self, request, *args, **kwargs):
