@@ -12,15 +12,15 @@
         <br><br>
             <h6>{{prod.description|linebreaks}}</h6>
             <p><a href="{% url 'product' prod.slug %}" class="btn btn-default" role="button">Detalhes</a>
-                <a href="{% url 'carrinho' prod.slug %}" class="btn btn-success cart" role="button">Adcionar</a>
+                <a href="{% url 'carrinho' prod.slug %}" class="btn btn-success cart" role="button" onclick = "alerta()">Adcionar</a>
             </p>
-            {% if messages %}
+            {% comment %} {% if messages %}
             {%for message in messages %}
             <div>
                 {{message}}
             </div>
             {%endfor%}
-            {% endif %}
+            {% endif %} {% endcomment %}
         </div>
     </div>
 

@@ -2,7 +2,7 @@
 
 from django.shortcuts import get_object_or_404, redirect
 from paypal.standard.forms import PayPalPaymentsForm
-from django.views.generic import RedirectView, TemplateView, ListView, DetailView
+from django.views.generic import RedirectView, TemplateView, ListView, DetailView, View
 from django.forms import modelformset_factory
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -15,19 +15,27 @@ from catalog.models import Product
 from .models import CartItem, Order
 
 
-class CreateCartItemView(RedirectView):
+class CreateCartItemView(View):
+    
+    def get_context_data(self, **kwargs):
+        context = super(CreateCartItemView, self).get_context_data(**kwargs)
+        itens1 = CartItem.objects.all()
+        itens = len(itens1)
+        print(itens1)
+        context['cart_item'] = itens
+        return context
 
-    def get_redirect_url(self, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         product = get_object_or_404(Product, slug=self.kwargs['slug'])
         if self.request.session.session_key is None:
             self.request.session.save()
         cart_item, created = CartItem.objects.add_item(
             self.request.session.session_key, product
         )
-        if created:
-            messages.success(self.request, 'Produto adicionado')
-        else:
-            messages.success(self.request, 'Produto atualizado')
+        # if created:
+        #     messages.success(self.request, 'Produto adicionado')
+        # else:
+        #     messages.success(self.request, 'Produto atualizado')
         return reverse('cart')
 
 
@@ -57,6 +65,7 @@ class CartItemView(TemplateView, CreateCartItemView):
     def get_context_data(self, **kwargs):
         context = super(CartItemView, self).get_context_data(**kwargs)
         context['formset'] = self.get_formset()
+        context['cart_item'] = CartItem()
         return context
 
     def post(self, request, *args, **kwargs):

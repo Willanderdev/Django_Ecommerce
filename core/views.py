@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from .forms import ContatoForm
 from django.contrib import messages
 
-# Create your views here.
 
 
 def index(request):
