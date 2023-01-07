@@ -6,14 +6,10 @@ $(function () {
             url: $(this).attr('href'),
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
-                alert('PRODUTO ADCIONADO');
+                
             }
         });
     });
 });
 
 
-// function alerta() {
-//     alert('olá');
-//     console.log('olá');
-// }
