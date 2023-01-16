@@ -22,6 +22,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     name = models.CharField('Nome', max_length=100, blank=True)
     email = models.EmailField('E-mail', unique=True)
+    image = models.ImageField(
+        'image', upload_to='user', blank=True, null=True)
     is_staff = models.BooleanField('Equipe', default=False)
     is_active = models.BooleanField('Ativo', default=True)
     date_joined = models.DateTimeField('Data de Entrada', auto_now_add=True)
@@ -43,3 +45,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return str(self).split(" ")[0]
+    
+    def to_dict(self):
+        return{
+            'username': self.username,
+            'name': self.name,
+            'email': self.email
+        }

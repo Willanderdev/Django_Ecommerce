@@ -1,14 +1,16 @@
 html,
 body {
-    background-color: hsl(169, 53%, 76%);
+    background: linear-gradient(45deg, #3d4941, #c5b7b7, #084177, #add4a5, #b1646a, #e0c4b6);
     margin: 0;
     padding: 0;
     height: 100%;
 }
 
-a{
-    color: rgb(125, 185, 91);
+a {
+    color: rgb(97, 30, 13);
+    text-decoration: none;
 }
+
 #wrapper {
     min-height: 100%;
     position: relative;
@@ -20,10 +22,211 @@ div.body-content {
 }
 
 footer {
-    
+
     width: 100%;
     height: 100px;
     position: absolute;
     bottom: 0;
     left: 0;
+}
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------------------- */
+/* animação do portifolio */
+/* --------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+
+.carrosel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 250px;
+    /*	outline: 3px solid black;*/
+    margin: 50px auto;
+    /* box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.7); */
+    /* overflow: hidden; */
+
+}
+
+.carrosel ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    list-style: none;
+    width: 0px;
+    height: 250px;
+
+
+}
+
+.carrosel li {
+    float: left;
+    line-height: 2px;
+    position: relative;
+    animation: slide 10s infinite ease-in-out;
+
+}
+
+@keyframes slide {
+    0% {
+        left: 0px
+    }
+
+    25% {
+        left: -100px
+    }
+
+
+    50% {
+        left: -200px
+    }
+
+
+    75% {
+        left: 200px
+    }
+
+    100% {
+        left: 0px
+    }
+}
+
+.copy {
+    color: red;
+    position: absolute;
+    top: 60%;
+    left: 1550px;
+}
+
+/* Profile-------------------------------------------------------------------------------------------- */
+
+/* body {
+    background-color: #eee;
+} */
+
+.card {
+    background-color: #fff;
+    width: 280px;
+    border-radius: 33px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 2rem !important;
+}
+
+.top-container {
+    display: flex;
+    align-items: center;
+}
+
+.profile-image {
+    border-radius: 10px;
+    border: 2px solid #5957f9;
+}
+
+.name {
+    font-size: 15px;
+    font-weight: bold;
+    color: #272727;
+    position: relative;
+    top: 8px;
+}
+
+.mail {
+    font-size: 14px;
+    color: grey;
+    position: relative;
+    top: 2px;
+}
+
+.middle-container {
+    background-color: #eee;
+    border-radius: 12px;
+
+}
+
+.middle-container:hover {
+    border: 1px solid #5957f9;
+}
+
+.dollar-div {
+    background-color: #5957f9;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.round-div {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.dollar {
+    font-size: 16px !important;
+    color: #5957f9 !important;
+    font-weight: bold !important;
+}
+
+
+.current-balance {
+    font-size: 15px;
+    color: #272727;
+    font-weight: bold;
+}
+
+.amount {
+    color: #5957f9;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.dollar-sign {
+    font-size: 16px;
+    color: #272727;
+    font-weight: bold;
+}
+
+.recent-border {
+    border-left: 2px solid #5957f9;
+    display: flex;
+    align-items: center;
+
+}
+
+.recent-border:hover {
+    border-bottom: 1px solid #dee2e6 !important;
+}
+
+.recent-orders {
+    font-size: 16px;
+    font-weight: 700;
+    color: #5957f9;
+    margin-left: 2px;
+}
+
+.wishlist {
+    font-size: 16px;
+    font-weight: 700;
+    color: #272727;
+
+}
+
+.wishlist-border:hover {
+    border-bottom: 1px solid #dee2e6 !important;
+}
+
+.fashion-studio {
+    font-size: 16px;
+    font-weight: 700;
+    color: #272727;
+}
+
+.fashion-studio-border:hover {
+    border-bottom: 1px solid #dee2e6 !important;
 }

@@ -8,7 +8,7 @@ class Product_listView(ListView):
     model = Product
     context_object_name = 'produtos'
     template_name = 'catalog/product_list.html'
-    paginate_by = 6
+    paginate_by = 3
     ordering = 'id'
    
     def get_queryset(self):
@@ -18,12 +18,7 @@ class Product_listView(ListView):
             queryset = watson.filter(queryset, pesquisa) 
         return queryset
     
-    
-# def product_list(request):
-#     context = {
-#         'produtos': Product.objects.all()
-#     }
-#     return render(request, 'catalog/product_list.html', context)
+
 
 class CategoryListView(ListView):
     context_object_name = 'product_list'

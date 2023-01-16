@@ -43,7 +43,7 @@
                             {{form.instance.product.slug}}
                         </td>
                         <td>
-                            <a href="#">{{form.instance.product}}</a>
+                            <a href="{{ product.get_absolute_url }}">{{form.instance.product}}</a>
                         </td>
                         <td>
                             {{ form.instance.price|floatformat:"2" }}
@@ -52,13 +52,10 @@
                             {{ form.quantity }}
                         </td>
 
-                        <td>
-
-                        </td>
                         <td class="text-center">
                             <button name="{{form.DELETE.html_name}}" value="on" type="submit"
                                 class="btn btn-danger btn-sm">Remover</button>
-                            {{form.id}}
+                            
                         </td>
                     </tr>
                     {%endfor%}
@@ -70,7 +67,6 @@
                 <button type="submit" class="btn btn-primary" name="button">Atualizar Carrinho</button></li>
 
                 <a href="{% url 'checkout' %}" class="btn btn-success">Finalizar Compra</a>
-
             </p>
         </form>
     </div>

@@ -15,18 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from core import views
+from core.views import index, product, contact
 from django.conf.urls.static import static
 from django.conf import settings
 
 
 urlpatterns = [
-    path('admin', admin.site.urls),
-    path('', views.index, name='index'),
-    path('contact', views.contact, name='contact'),
+    path('admin/', admin.site.urls),
+    path('', index, name='index'),
+    path('contact', contact, name='contact'),
     path('contas/', include('accounts.urls')),
-    path('', include('catalog.urls')),
-    path('product', views.product, name='product'),
+    path('catalog/', include('catalog.urls')),
+    path('product', product, name='product'),
     path('usuarios/', include('django.contrib.auth.urls')),
     path('compras/', include('checkout.urls')),
     path('paypal/', include('paypal.standard.ipn.urls')),

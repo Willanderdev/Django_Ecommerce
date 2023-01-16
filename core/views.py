@@ -1,12 +1,17 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+
 from .forms import ContatoForm
 from django.contrib import messages
+from checkout.models import CartItem
 
 
 
 def index(request):
-    return render(request, 'index.html')
+    cart = CartItem.objects.count()
+    context = {
+        'cart':cart
+    }
+    return render(request, 'index.html', context=context)
 
 
 def contact(request):

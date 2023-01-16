@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order
+from .models import Order, CartItem
 # Register your models here.
 
 
@@ -7,3 +7,7 @@ from .models import Order
 class Orderadmin(admin.ModelAdmin):
     pass
     
+
+@admin.register(CartItem)
+class Cartadmin(admin.ModelAdmin):
+    pass

@@ -1,9 +1,31 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block container %}
 <div class="">
-		  <h1 style="color: red;" >Port E-Commerce</h1>
-		  <p>Site E-Commerce desenvolvido com Python-Django, pra fins de Portifólio.</p>
-		  <p><a class="btn btn-primary">Saiba mais</a></p>
-		</div>
+	<h1 style="color: red;">Port E-Commerce</h1>
+	
+	<p>Site E-Commerce desenvolvido com Python-Django, pra fins de Portifólio.</p>
+		<p>neste projeto usei como stack principal: Python-Django|Javascript-Jquery/Ajax.</p>
+		<p>Nele você consegue criar um usuário, editar todos os dados deste usuário, criar um carrinho de compras, fazer checkout e até simular um pagamento usando o Paypal.</p>
+		<p>O intuito foi desenvolver o backend de um E-commerce usual(por isto não foquei no Frontend), neste projeto consigo expor grande parte do conhecimento que tenho com no Framework Django.
+	</p>
+	<a href="#">Repositório do Projeto</a>
+</div>
+<div class="container slide">
+
+	<div class="col-lg-12 carrosel">
+		<ul>
+			<li>
+				<img src="{% static 'image/fone.jpg' %}" alt="fone">
+			</li>
+			<li>
+				<img src="{% static 'image/pad.jpg' %}" alt="pad">
+			</li>
+			<li>
+				<img src="{% static 'image/nintendo.jpg' %}" alt="nintendo">
+			</li>
+		</ul>
+	</div>
+</div>
+
 {% endblock %}

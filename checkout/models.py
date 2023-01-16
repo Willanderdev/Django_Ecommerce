@@ -38,6 +38,8 @@ class CartItem(models.Model):
 
     def __str__(self):
         return '{} [{}]'.format(self.product, self.quantity)
+
+    
     
 class OrderManager(models.Manager):
     
