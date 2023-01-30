@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -48,7 +49,7 @@ INSTALLED_APPS = [
     'bootstrap5',
     'accounts',
     'checkout',
-   
+
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -93,8 +94,8 @@ WSGI_APPLICATION = 'djangoecommerce.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-#configuração do postgresql pra deploy no Railway
-#postgresql://postgres: NTq081M1EtDH826OuhEo@containers-us-west-68.railway.app: 6519/railway
+# configuração do postgresql pra deploy no Railway
+# postgresql://postgres: NTq081M1EtDH826OuhEo@containers-us-west-68.railway.app: 6519/railway
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -107,17 +108,25 @@ WSGI_APPLICATION = 'djangoecommerce.wsgi.application'
 # }
 
 # configuração Postgrsql local(desenvolvimento)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Port-Ecommerce',
-        'USER': 'postgres',
-        'PASSWORD': 'Tr4der2404',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'Port-Ecommerce',
+#         'USER': 'postgres',
+#         'PASSWORD': 'Tr4der2404',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
+# set é pra setar a variave de ambiente DATABASE_URL
+# set DATABASE_URL = postgres://port_ecommerce_user:gq7jWBHlrkhyKyXF2Br7nT4EOXihEdwN@dpg-cfa39asgqg4e89cpn1gg-a.oregon-postgres.render.com/port_ecommerce
+
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+
+
+}
 
 
 # Password validation
@@ -160,7 +169,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
-
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
@@ -189,14 +197,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 PAYPAL_TEST = True
 PAYPAL_EMAIL = 'willanderguitar@hotmail.com'
 
-#thumbnails configuração pra corte de imagens
+# thumbnails configuração pra corte de imagens
 THUMBNAIL_ALIASES = {
     '': {
-        'prod_image': {'size': (285,160), 'crop': True},
+        'prod_image': {'size': (285, 160), 'crop': True},
     },
 }
 
-#configurações dos pictures
+# configurações dos pictures
 # PICTURES = {
 #     "BREAKPOINTS": {
 #         "xs": 576,
@@ -211,4 +219,4 @@ THUMBNAIL_ALIASES = {
 #     "PIXEL_DENSITIES": [1, 2],
 # }
 
-#pra carregar os rquivos static no railway é preciso adcionar o whitenoise nos middleware
+# pra carregar os rquivos static no railway é preciso adcionar o whitenoise nos middleware... instalar o whitnoise e coletar os arquivos statics
