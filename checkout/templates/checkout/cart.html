@@ -6,71 +6,154 @@
 {% endblock %}
 
 {% block container %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
 
+        var tabela = document.body.querySelectorAll("table td:nth-child(3)");
+
+        let total = {}
+        for (var x = 0; x < tabela.length; x++) {
+            var name = 'form-' + x + '-quantity'
+            const el = document.body.querySelector('table td.quantity input[name=' + name + ']').value;
+            total[parseInt(tabela[x].innerHTML)] = parseInt(el)
+
+        }
+
+        //transforma em uma lista as chaves e valores do objeto total
+        lista = Object.entries(total)
+
+        z = 0
+        result = []
+
+        for (var x = 0; x < lista.length; x++) {
+
+            cache = []
+            for (y = 0; y < lista[x].length; y++) {
+                cache.unshift(lista[z][y])
+            };
+
+            //adciona ao array result a multipicação dos elementos contidos em cache
+            result.unshift(cache[0] * cache[1])
+            z++
+        };
+
+        var soma = 0;
+        //faz a soma dos elementos contidos em result pra entregar o total do carrinho 
+        for (var i = 0; i < result.length; i++) {
+            soma += result[i];
+        };
+        document.querySelector(".products").innerHTML = tabela.length
+        document.querySelector(".total").innerHTML = soma + ' R$'
+    });
+</script>
 
 
 <div class="page-header">
     <h1>Carrinho de Compras</h1>
 </div>
 <br>
-<div class="row">
-    <div class="col-md-8 col-md-offset-2">
-        <form class="" action="" method="post">
-            {% csrf_token %}
-            {{ formset.management_form}}
-            <table class="table table-bordered">
-                <thead>
-                    <th>
-                        ID
-                    </th>
-                    <th>
-                        Nome
-                    </th>
-                    <th>
-                        Preço
-                    </th>
-                    <th style="width: 10%;">
-                        Quantidade
-                    </th>
-                    <th>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 ">
+            <form class="" action="" method="post">
+                {% csrf_token %}
+                {{ formset.management_form}}
+                <table id="tbl_3" class="table table-bordered">
+                    <thead>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Nome
+                        </th>
+                        <th>
+                            Preço
+                        </th>
+                        <th style="width: 10%;">
+                            Quantidade
+                        </th>
+                        <th>
 
-                    </th>
-                </thead>
-                <tbody>
-                    {% for form in formset %}
-                    <tr>
-                        <td>
-                            {{form.instance.product.slug}}
-                        </td>
-                        <td>
-                            <a href="{{ product.get_absolute_url }}">{{form.instance.product}}</a>
-                        </td>
-                        <td>
-                            {{ form.instance.price|floatformat:"2" }}
-                        </td>
-                        <td>
-                            {{ form.quantity }}
-                        </td>
+                        </th>
+                    </thead>
+                    <tbody>
+                        {% for form in formset %}
+                        <tr>
+                            <td>
+                                {{form.instance.product.slug}}
+                            </td>
+                            <td>
+                                <a href="{{ product.get_absolute_url }}">{{form.instance.product}}</a>
+                            </td>
+                            <td class="preço">
+                                {{ form.instance.price|floatformat:"2" }}
+                            </td>
+                            <td class="quantity">
+                                {{ form.quantity }}
+                            </td>
 
-                        <td class="text-center">
-                            <button name="{{form.DELETE.html_name}}" value="on" type="submit"
-                                class="btn btn-danger btn-sm">Remover</button>
-                            
-                        </td>
-                    </tr>
-                    {%endfor%}
-                </tbody>
-            </table>
-            <br>
-            <p class="text-right">
-                <a href="{% url 'produtos' %}" class="pull-left btn btn-default">Continuar Compras</a>
-                <button type="submit" class="btn btn-primary" name="button">Atualizar Carrinho</button></li>
+                            <td class="text-center">
+                                <button name="{{form.DELETE.html_name}}" value="on" type="submit"
+                                    class="btn btn-danger btn-sm">Remover</button>
+                                {{form.id}}
+                            </td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
 
-                <a href="{% url 'checkout' %}" class="btn btn-success">Finalizar Compra</a>
-            </p>
+        </div>
+        <br><br>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header py-3">
+                    <h5 class="mb-0">Summary</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li
+                            class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                            Products
+                            <span class="products"></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                            Shipping
+                            <span>Gratis</span>
+                        </li>
+                        <li
+                            class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                            <div>
+                                <strong>Total amount</strong>
+                                <strong>
+                                    <p class="total" style="color: red"></p>
+                                </strong>
+                            </div>
+
+                        </li>
+
+                        <li
+                            class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                            <a href="{% url 'produtos' %}" class=" btn btn-primary">Continuar Compras</a>
+                        </li>
+
+                        <li
+                            class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                            <button type="submit" class="btn btn-primary" name="button">Atualizar
+                                Carrinho</button>
+                        </li>
+
+                        <li
+                            class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                            <a href="{% url 'checkout' %}" class="btn btn-success">Finalizar Compra</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         </form>
     </div>
 </div>
+
 
 
 {% endblock %}

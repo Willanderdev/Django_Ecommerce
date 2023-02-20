@@ -12,7 +12,7 @@ from paypal.standard.ipn.signals import valid_ipn_received
 from django.conf import settings
 from catalog.models import Product
 
-from .models import CartItem, Order
+from .models import CartItem, Order, OrderItem
 
 
 class CreateCartItemView(View):
@@ -20,6 +20,8 @@ class CreateCartItemView(View):
     def get(self, request, *args, **kwargs):
         product = get_object_or_404(Product, slug=self.kwargs['slug'])
         if self.request.session.session_key is None:
+            session = self.request.session.session_key
+            
             self.request.session.save()
         cart_item, created = CartItem.objects.add_item(
             self.request.session.session_key, product
@@ -40,6 +42,8 @@ class CartItemView(TemplateView, CreateCartItemView):
             CartItem, fields=('quantity',), can_delete=True, extra=0
         )
         session_key = self.request.session.session_key
+        
+        
         if session_key:
             if clear:
                 formset = CartItemFormSet(
@@ -57,6 +61,7 @@ class CartItemView(TemplateView, CreateCartItemView):
     def get_context_data(self, **kwargs):
         context = super(CartItemView, self).get_context_data(**kwargs)
         context['formset'] = self.get_formset()
+        
     
         
         return context

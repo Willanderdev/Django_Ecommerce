@@ -1,8 +1,7 @@
-# coding=utf-8
-
 from django.db import models
 from django.conf import settings
 from catalog.models import Product
+
 
 class CartItemManager(models.Manager):
 
@@ -35,10 +34,10 @@ class CartItem(models.Model):
         verbose_name = 'Item do Carrinho'
         verbose_name_plural = 'Itens dos Carrinhos'
         unique_together = (('cart_key', 'product'),)
-
+        
+    
     def __str__(self):
         return '{} [{}]'.format(self.product, self.quantity)
-
     
     
 class OrderManager(models.Manager):

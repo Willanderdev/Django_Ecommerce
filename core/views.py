@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 from .forms import ContatoForm
 from django.contrib import messages
 from checkout.models import CartItem
