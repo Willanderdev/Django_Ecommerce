@@ -100,7 +100,7 @@ class CheckoutView(LoginRequiredMixin, TemplateView):
 class OrderListView(LoginRequiredMixin, ListView):
     
     template_name = 'checkout/order_list.html'
-    paginate_by = 20
+    paginate_by = 5
     
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)

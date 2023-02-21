@@ -97,8 +97,8 @@ footer {
 .copy {
     color: red;
     position: absolute;
-    top: 60%;
-    left: 1550px;
+    bottom: 10%;
+    left: 1600px;
 }
 
 /* Profile-------------------------------------------------------------------------------------------- */
@@ -254,4 +254,68 @@ footer {
     list-style-type: none;
     bottom: 30px;
     margin: 20px;
+}
+
+#copyright .copyright-content {
+    border-top: 1px solid #d5d4e9;
+    padding:80px 60px 10px 0;
+    margin: 35px 0 0px;
+}
+
+#copyright p {
+    line-height: 42px;
+    color: #333;
+    text-align: center;
+    margin: 0;
+}
+
+#copyright p a {
+    color: chartreuse;
+    
+    text-decoration: none;
+}
+.list-unstyled li a{
+    color: chartreuse;
+}
+
+
+/* Carrinho de compras do Bootstrap */
+
+@media (min-width: 1025px) {
+    .h-custom {
+        height: 100vh !important;
+    }
+}
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+}
+
+.card-registration .select-arrow {
+    top: 13px;
+}
+
+.bg-grey {
+    background-color: #eae8e8;
+}
+
+@media (min-width: 992px) {
+    .card-registration-2 .bg-grey {
+        border-top-right-radius: 16px;
+        border-bottom-right-radius: 16px;
+    }
+}
+
+@media (max-width: 991px) {
+    .card-registration-2 .bg-grey {
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+    }
+}
+
+.table{
+    border: 5px;
 }

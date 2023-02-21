@@ -73,7 +73,7 @@
         <ul class="navbar-nav ml-auto">
 
           {% if user.is_authenticated %}
-          <li><a class="nav-item nav-link" href="{% url 'cart' %}">Carrinho</a></li>
+          <li><a style="color: chartreuse;" class="nav-item nav-link" href="{% url 'cart' %}">Carrinho</a></li>
           {% endif %}
 
         </ul>
@@ -86,22 +86,33 @@
   <br>
   <div class="container margin-top">
     {% block container %}{% endblock %}
-    <footer id="footer" class="footer-area section-padding">
-
-      <div class="col-md-12">
-        <ul class="list-unstyled">
-          <li><a href="{% url 'produtos' %}">Produtos</a></li>
-          <li><a href="{% url 'contact' %}">Contato</a></li>
-          <li><a href="">Termos e Privacidade</a></li>
-          <li class="copy">
-            <p>Copyright © 2022 Willander Vitorino</p>
-          </li>
-        </ul>
-
-      </div>
-
-    </footer>
   </div>
+  <footer id="footer" class="footer-area section-padding">
+    <div id="copyright">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="container">
+              <div class="copyright-content">
+
+              </div>
+            </div>
+            <ul class="list-unstyled">
+              <li><a href="{% url 'produtos' %}">Produtos</a></li>
+              <li><a href="{% url 'contact' %}">Contato</a></li>
+              <li><a href="">Termos e Privacidade</a></li>
+            </ul>
+            <div class="copy">
+
+              <p style="color: chartreuse;">Copyright © 2022 Willander Vitorino</p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   {% if messages %}
   {%for message in messages %}
   <div class="alert alert-primary" role="alert">
@@ -110,9 +121,10 @@
   {%endfor%}
   {% endif %}
 
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-  {% comment %} <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> {% endcomment %}
+  {% comment %}
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> {% endcomment %}
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js"
     integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
     crossorigin="anonymous"></script>
