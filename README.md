@@ -1,7 +1,9 @@
 # Django_Ecommerce
 
-estou desenvolvendo um ecommerce pra expor no Portifólio
-este repositorio uso pra guardar o script deste ecommerce
-estou usando Python - Django, Javascript e Bootstrap pra desenvolver este projeto
-Postgresql pra Base da Dados
-e irei usar Docker pra fazer o deploy...
+Site E-Commerce desenvolvido com Python-Django, pra fins de Portifólio.
+
+neste projeto usei como stack principal: Python-Django|Javascript-Jquery/Ajax.. e Postgresql pra base de dados.
+
+Nele você consegue criar um usuário, editar todos os dados deste usuário, listar pedidos de um usuario, voçê consegue pesquisar por produtos dentro o site, criar um carrinho de compras, fazer checkout, simular um pagamento usando o Paypal, me mandar um email pela aba contato entre outras funcionalidades...
+
+O intuito foi desenvolver o backend de um E-commerce usual(por isto não foquei no Frontend), neste projeto consigo expor minha forma de trazer soluções para os desafios que surgem na construção de um E-commerce usando Python o Framework Django e Javascript.
