@@ -94,11 +94,16 @@ footer {
     }
 }
 
+
 .copy {
     color: red;
     position: absolute;
-    bottom: 10%;
-    left: 1600px;
+    /* bottom: 0%; */
+    right: 30%;
+}
+
+.copy1{
+    position: absolute;
 }
 
 /* Profile-------------------------------------------------------------------------------------------- */
@@ -257,9 +262,9 @@ footer {
 }
 
 #copyright .copyright-content {
-    border-top: 1px solid #d5d4e9;
-    padding:80px 60px 10px 0;
-    margin: 35px 0 0px;
+    border-top: 1px solid #f3f3f7;
+    
+    
 }
 
 #copyright p {
@@ -270,12 +275,12 @@ footer {
 }
 
 #copyright p a {
-    color: chartreuse;
+    color: rgb(6, 12, 1);
     
     text-decoration: none;
 }
 .list-unstyled li a{
-    color: chartreuse;
+    color: rgb(18, 19, 17);
 }
 
 

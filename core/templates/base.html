@@ -15,6 +15,7 @@
 </head>
 
 <body>
+
   <nav class="navbar navbar-default">
     <a style="color: red;" class="navbar-brand" href="#">Port E-Commerce</a>
 
@@ -45,6 +46,7 @@
 
     </div>
   </nav>
+
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light">
       <a class="navbar-brand" href="{% url 'index' %}">Inicio</a>
@@ -89,25 +91,26 @@
   </div>
   <footer id="footer" class="footer-area section-padding">
     <div id="copyright">
-      <div class="container-fluid">
+      <div class="container-fluid sec">
         <div class="row">
-          <div class="col-md-12">
-            <div class="container">
-              <div class="copyright-content">
 
-              </div>
-            </div>
-            <ul class="list-unstyled">
-              <li><a href="{% url 'produtos' %}">Produtos</a></li>
-              <li><a href="{% url 'contact' %}">Contato</a></li>
-              <li><a href="">Termos e Privacidade</a></li>
-            </ul>
-            <div class="copy">
-
-              <p style="color: chartreuse;">Copyright © 2022 Willander Vitorino</p>
+          <div class="container">
+            <div class="col-12 copyright-content">
 
             </div>
           </div>
+          <div class="col-sm-6 col-lg-10 ">
+
+            <ul class="list-unstyled">
+              <li><a href="{% url 'produtos' %}">Produtos</a></li>
+              <li><a href="{% url 'contact' %}">Contato</a></li>
+              <li><a href="#">Termos e Privacidade</a></li>
+            </ul>
+          </div>
+          <div class="col-sm-6 col-lg-2 ">
+            <p style="color: chartreuse;">Copyright © 2022 Willander Vitorino</p>
+          </div>
+
         </div>
       </div>
     </div>
