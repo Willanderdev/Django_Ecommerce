@@ -197,6 +197,7 @@ AUTHENTICATION_BACKENDS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#configurações do teste de pagamento usando paypal
 PAYPAL_TEST = True
 PAYPAL_EMAIL = 'willanderguitar@hotmail.com'
 
