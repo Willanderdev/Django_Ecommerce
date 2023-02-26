@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', '1,2,3')
 # DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
 
 DEBUG = True
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['ecommerce-ugu7.onrender.com']
 
     
 
