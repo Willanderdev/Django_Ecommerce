@@ -22,12 +22,13 @@ load_dotenv(BASE_DIR / '.env')
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY', '1,2,3')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
+# DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
 
-ALLOWED_HOSTS = ['ecommerce-ugu7.onrender.com']
+DEBUG = True
+ALLOWED_HOSTS = ['*']
 
     
 
@@ -110,23 +111,23 @@ WSGI_APPLICATION = 'djangoecommerce.wsgi.application'
 # }
 
 # configuração Postgrsql local(desenvolvimento)
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'Port-Ecommerce',
-#         'USER': 'postgres',
-#         'PASSWORD': 'Tr4der2404',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Port-Ecommerce',
+        'USER': 'postgres',
+        'PASSWORD': 'Tr4der2404',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
 
 # set é pra setar a variave de ambiente DATABASE_URL
 # set DATABASE_URL = postgres://ecommerce_nnmm_user:xYRpA73nlbKvQBawRplpYkX7bDcvko1G@dpg-cfbrm5kgqg4aqevg6000-a/ecommerce_nnmm
 
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'), conn_max_age=600),
-}
+# DATABASES = {
+#     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'), conn_max_age=600),
+# }
 
 
 # Password validation
